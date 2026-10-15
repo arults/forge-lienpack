@@ -32,57 +32,36 @@ export default function StartJob() {
   }
 
   return (
-    <div className="space-y-6">
-      <Link href="/" className="text-sm text-zinc-500 underline-offset-2 hover:underline">
-        ← LienPack
-      </Link>
-      <h1 className="text-2xl font-semibold tracking-tight">Start a job</h1>
-      <p className="text-sm text-zinc-600">
-        Concierge intake. We reply with a Completeness Sheet within 24–48h.
-      </p>
-      <form onSubmit={onSubmit} className="space-y-3">
-        {(
-          [
-            ["email", "email", "Your email", true],
-            ["company", "text", "Your company", true],
-            ["gc", "text", "General contractor", true],
-            ["project", "text", "Project name", true],
-            ["period", "text", "Billing period (e.g. Sep 2026)", true],
-            ["portal", "text", "Portal (Textura / GCPay / Procore / email)", false],
-          ] as const
-        ).map(([name, type, ph, req]) => (
-          <input
-            key={name}
-            name={name}
-            type={type}
-            required={req}
-            placeholder={ph}
-            className="w-full rounded-md border border-zinc-300 px-3 py-2.5 text-sm outline-none focus:border-zinc-900"
-          />
-        ))}
-        <textarea
-          name="missing"
-          required
-          rows={4}
-          placeholder="What docs are required / what did the GC reject?"
-          className="w-full rounded-md border border-zinc-300 px-3 py-2.5 text-sm outline-none focus:border-zinc-900"
-        />
-        <textarea
-          name="vendors"
-          rows={3}
-          placeholder="Lower-tier vendors (published emails only)"
-          className="w-full rounded-md border border-zinc-300 px-3 py-2.5 text-sm outline-none focus:border-zinc-900"
-        />
-        <button
-          type="submit"
-          className="rounded-md bg-zinc-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-zinc-800"
-        >
-          Submit intake
-        </button>
-      </form>
-      {sent && (
-        <p className="text-sm text-zinc-600">Opening email to forge7408@agentmail.to…</p>
-      )}
+    <div className="lp-shell">
+      <div className="lp-page">
+        <Link href="/" className="lp-back">
+          ← LienPack
+        </Link>
+        <h1 style={{ margin: "0 0 8px", fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 600, letterSpacing: "-0.02em" }}>
+          Start a job
+        </h1>
+        <p style={{ margin: "0 0 24px", color: "var(--lp-text-muted)", fontSize: 14, lineHeight: 1.55 }}>
+          Full intake for a paid Completeness Sheet. Opens email to forge7408@agentmail.to.
+        </p>
+        <form onSubmit={onSubmit} className="lp-card" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <input name="email" type="email" required placeholder="you@subcontractor.com" className="lp-input" />
+          <input name="company" type="text" placeholder="Company" className="lp-input" />
+          <input name="gc" type="text" placeholder="GC name" className="lp-input" />
+          <input name="project" type="text" placeholder="Project / job name" className="lp-input" />
+          <input name="period" type="text" placeholder="Billing period (e.g. Sep 2026)" className="lp-input" />
+          <input name="portal" type="text" placeholder="Portal (Textura / GCPay / Procore / other)" className="lp-input" />
+          <textarea name="missing" rows={4} placeholder="Required docs / what GC rejected" className="lp-input" style={{ minHeight: 96 }} />
+          <textarea name="vendors" rows={3} placeholder="Lower-tier vendors (name + published email)" className="lp-input" style={{ minHeight: 80 }} />
+          <button type="submit" className="lp-btn lp-btn-primary">
+            Email intake
+          </button>
+        </form>
+        {sent && (
+          <p style={{ marginTop: 14, fontSize: 14, color: "var(--lp-text-muted)" }}>
+            Opening your email app…
+          </p>
+        )}
+      </div>
     </div>
   );
 }

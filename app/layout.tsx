@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Sora } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
-const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
-const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
+const sora = Sora({
+  variable: "--font-sora",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export const metadata: Metadata = {
   title: "LienPack — One missing waiver. Another 30 days.",
@@ -14,8 +18,25 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-zinc-900`}>
-        <main className="mx-auto min-h-screen max-w-lg px-5 py-14 sm:py-20">{children}</main>
+      <body className={`${sora.variable} antialiased`}>
+        <div className="lp-nav">
+          <div className="lp-nav-inner">
+            <Link href="/" className="lp-logo">
+              <span className="lp-logo-mark" aria-hidden />
+              LienPack
+            </Link>
+            <nav className="lp-nav-links" aria-label="Primary">
+              <a href="/#why">Why</a>
+              <a href="/#how">How</a>
+              <a href="/#deliverables">What you get</a>
+              <Link href="/sheet">Sample</Link>
+            </nav>
+            <Link href="/trial" className="lp-btn lp-btn-primary" style={{ minHeight: 36, padding: "0 16px" }}>
+              Free trial
+            </Link>
+          </div>
+        </div>
+        {children}
       </body>
     </html>
   );

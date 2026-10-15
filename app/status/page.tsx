@@ -8,25 +8,29 @@ const STEPS = [
 
 export default function StatusPage() {
   return (
-    <div className="space-y-6">
-      <Link href="/" className="text-sm text-zinc-500 underline-offset-2 hover:underline">
-        ← LienPack
-      </Link>
-      <h1 className="text-2xl font-semibold tracking-tight">Job status</h1>
-      <p className="text-sm text-zinc-600">
-        Human-powered. After you submit intake, we email you which step you are on.
-        No fake live tracker.
-      </p>
-      <ol className="space-y-3">
-        {STEPS.map((s, i) => (
-          <li key={s.id} className="rounded-lg border border-zinc-200 p-4">
-            <p className="text-sm font-medium text-zinc-900">
-              {i + 1}. {s.label}
-            </p>
-            <p className="mt-1 text-sm text-zinc-600">{s.blurb}</p>
-          </li>
-        ))}
-      </ol>
+    <div className="lp-shell">
+      <div className="lp-page">
+        <Link href="/" className="lp-back">
+          ← LienPack
+        </Link>
+        <h1 style={{ margin: "0 0 8px", fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 600, letterSpacing: "-0.02em" }}>
+          Job status
+        </h1>
+        <p style={{ margin: "0 0 24px", color: "var(--lp-text-muted)", fontSize: 14, lineHeight: 1.55 }}>
+          Human-powered. After you submit intake, we email you which step you are on.
+          No fake live tracker.
+        </p>
+        <ol style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: 12 }}>
+          {STEPS.map((s, i) => (
+            <li key={s.id} className="lp-card">
+              <p style={{ margin: 0, fontSize: 14, fontWeight: 600 }}>
+                {i + 1}. {s.label}
+              </p>
+              <p style={{ margin: "6px 0 0", fontSize: 14, color: "var(--lp-text-muted)" }}>{s.blurb}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
     </div>
   );
 }
