@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   title: "LienPack — One missing waiver. Another 30 days.",
   description:
     "Pay-app completeness for US specialty trade subcontractors. Completeness sheet, chase drafts, zip for the GC. Free trial. Not legal advice. Not payment software.",
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    shortcut: "/icon.svg",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
