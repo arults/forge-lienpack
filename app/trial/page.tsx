@@ -4,14 +4,18 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 export default function Trial() {
-  const [status, setStatus] = useState<"idle" | "ok">("idle");
+  const [status, setStatus] = useState<"idle" | "ok" | "bad">("idle");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
 
   function onSubmit(e: FormEvent) {
     e.preventDefault();
     const eaddr = email.trim();
-    if (!eaddr.includes("@")) return;
+    // Lightweight check for mailto MVP (not full RFC)
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(eaddr)) {
+      setStatus("bad");
+      return;
+    }
     const subject = encodeURIComponent("LienPack free trial — pay app completeness");
     const body = encodeURIComponent(
       `Hi LienPack,\n\nFree trial request for a pay-app completeness sheet.\n\nEmail: ${eaddr}\nCompany: ${company.trim() || "(not given)"}\nGC name:\nProject:\nBilling period:\nWhat the GC rejected / missing (if known):\n\nThanks`
@@ -60,7 +64,7 @@ export default function Trial() {
             type="email"
             required
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => { setEmail(e.target.value); if (status === "bad") setStatus("idle"); }}
             placeholder="you@subcontractor.com"
             className="lp-input"
           />
@@ -75,6 +79,12 @@ export default function Trial() {
             Free trial — email intake
           </button>
         </form>
+
+        {status === "bad" && (
+          <p style={{ marginTop: 14, fontSize: 14, color: "var(--lp-amber-700)" }}>
+            Enter a valid email like you@company.com.
+          </p>
+        )}
 
         {status === "ok" && (
           <p style={{ marginTop: 14, fontSize: 14, color: "var(--lp-text-muted)" }}>

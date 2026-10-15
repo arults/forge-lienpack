@@ -185,6 +185,16 @@ Thanks,
           </p>
         </section>
 
+        <div className="lp-card" style={{ marginBottom: 24, background: "var(--lp-bg-sub)" }}>
+          <p style={{ margin: 0, fontSize: 14, fontWeight: 600, color: "var(--lp-slate-900)" }}>
+            What else you get on a real job
+          </p>
+          <p style={{ margin: "8px 0 0", fontSize: 14, color: "var(--lp-text-muted)", lineHeight: 1.55 }}>
+            Chase drafts for every missing lower-tier waiver, plus a zip of collected PDFs
+            ready for the GC portal. You send and submit — we do not.
+          </p>
+        </div>
+
         <Link href="/trial" className="lp-btn lp-btn-primary">
           Free trial — get your first sheet
         </Link>
