@@ -2,8 +2,9 @@
 /** Route smoke: fetch live URLs and assert key copy. Usage: node scripts/smoke.mjs [base] */
 const base = (process.argv[2] || "https://forge-lienpack.vercel.app").replace(/\/$/, "");
 const checks = [
-  { path: "/", must: ["Free trial", "Missing waivers"] },
+  { path: "/", must: ["Free trial", "One missing waiver", "Completeness sheet", "lp-hero"] },
   { path: "/sheet", must: ["Completeness Sheet", "Sample chase draft"] },
+  { path: "/trial", must: ["Free trial", "forge7408@agentmail.to"] },
   { path: "/start", must: ["Start a job"] },
   { path: "/status", must: ["Received", "Chasing", "Ready"] },
   { path: "/non-goals", must: ["not"] },
