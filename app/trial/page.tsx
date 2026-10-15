@@ -59,14 +59,17 @@ export default function Trial() {
           </p>
         </header>
 
-        <form onSubmit={onSubmit} className="lp-card" style={{ maxWidth: 440, display: "flex", flexDirection: "column", gap: 12 }}>
+        <form onSubmit={onSubmit} noValidate className="lp-card" style={{ maxWidth: 440, display: "flex", flexDirection: "column", gap: 12 }}>
           <input
-            type="email"
+            type="text"
+            inputMode="email"
+            autoComplete="email"
             required
             value={email}
             onChange={(e) => { setEmail(e.target.value); if (status === "bad") setStatus("idle"); }}
             placeholder="you@subcontractor.com"
             className="lp-input"
+            aria-invalid={status === "bad"}
           />
           <input
             type="text"
