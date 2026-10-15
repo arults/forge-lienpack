@@ -1,160 +1,190 @@
-"use client";
-
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="space-y-16 pb-8 sm:space-y-20">
-      {/* Hero */}
-      <header className="space-y-5 pt-2">
-        <p className="text-xs font-medium uppercase tracking-[0.14em] text-zinc-400">
-          LienPack
-        </p>
-        <h1 className="text-[1.85rem] font-semibold leading-[1.15] tracking-tight text-zinc-900 sm:text-4xl sm:leading-[1.12]">
-          One missing waiver.
-          <br />
-          Another 30 days.
-        </h1>
-        <p className="max-w-md text-base leading-relaxed text-zinc-600 sm:text-lg">
-          Completeness sheet. Chase drafts. Zip for the GC.
-        </p>
-        <div className="flex flex-col gap-3 pt-1 sm:flex-row sm:items-center">
-          <Link
-            href="/trial"
-            className="inline-flex min-h-11 items-center justify-center rounded-md bg-zinc-900 px-6 py-3 text-sm font-medium text-white hover:bg-zinc-800"
-          >
-            Free trial
-          </Link>
-          <Link
-            href="/sheet"
-            className="inline-flex min-h-11 items-center justify-center rounded-md border border-zinc-200 bg-white px-6 py-3 text-sm font-medium text-zinc-800 hover:bg-zinc-50"
-          >
-            See sample sheet
-          </Link>
-        </div>
-      </header>
+    <>
+      <div className="lp-shell">
+        {/* Hero — Bounce-style rounded card */}
+        <header className="lp-hero">
+          <p className="lp-hero-kicker">Pay-app completeness</p>
+          <h1>
+            One missing waiver.
+            <br />
+            Another 30 days.
+          </h1>
+          <p className="lp-hero-sub">
+            Completeness sheet. Chase drafts. Zip for the GC.
+          </p>
+          <div className="lp-hero-actions">
+            <Link href="/trial" className="lp-btn lp-btn-primary">
+              Free trial
+            </Link>
+            <Link href="/sheet" className="lp-btn lp-btn-ghost">
+              See sample sheet
+            </Link>
+          </div>
+          <div className="lp-pill-row" aria-label="Highlights">
+            <span className="lp-pill">Specialty trades</span>
+            <span className="lp-pill">AIA G702 / G703</span>
+            <span className="lp-pill">GC portals</span>
+            <span className="lp-pill">First sheet free</span>
+          </div>
+        </header>
 
-      {/* Who */}
-      <section className="space-y-3">
-        <h2 className="text-xs font-medium uppercase tracking-[0.12em] text-zinc-400">
-          Who it&apos;s for
-        </h2>
-        <p className="max-w-md text-base leading-relaxed text-zinc-800">
-          Project accountants, billing coordinators, and PMs at US specialty
-          trade subcontractors — electrical, plumbing, HVAC, and the like —
-          who bill on AIA G702/G703 or GC portals.
-        </p>
-      </section>
+        {/* Who + Why */}
+        <section className="lp-section" id="why">
+          <h2 className="lp-section-title">Built for the people who assemble the package</h2>
+          <p className="lp-section-lead">
+            Project accountants, billing coordinators, and PMs at US specialty
+            trade subcontractors — electrical, plumbing, HVAC, and the like —
+            who bill on AIA forms or GC portals.
+          </p>
+          <div className="lp-why-list">
+            <div className="lp-why-item">
+              <strong>The cash is stuck</strong>
+              <span>
+                One missing lower-tier lien waiver and the GC rejects the whole
+                pay package. Another billing cycle while you chase vendors by email.
+              </span>
+            </div>
+            <div className="lp-why-item">
+              <strong>Paper and inboxes do not scale</strong>
+              <span>
+                Spreadsheets, forwarded PDFs, and “did you send that waiver?”
+                threads burn the week you need for the next pay app.
+              </span>
+            </div>
+            <div className="lp-why-item">
+              <strong>You still own the submit</strong>
+              <span>
+                We chase documents and assemble the pack. You send the emails and
+                upload to Textura, GCPay, Procore, or the GC portal. Not legal advice.
+              </span>
+            </div>
+          </div>
+          <div className="lp-trust">
+            <span>Document chase only</span>
+            <span>Not payment software</span>
+            <span>Not Textura / GCPay / Procore</span>
+          </div>
+        </section>
 
-      {/* Problem */}
-      <section className="space-y-3">
-        <h2 className="text-xs font-medium uppercase tracking-[0.12em] text-zinc-400">
-          The problem
-        </h2>
-        <p className="max-w-md text-base leading-relaxed text-zinc-800">
-          One missing lower-tier lien waiver and the GC rejects the whole pay
-          package. Cash sits another billing cycle while you chase vendors by
-          email.
-        </p>
-      </section>
-
-      {/* How */}
-      <section className="space-y-6">
-        <h2 className="text-xs font-medium uppercase tracking-[0.12em] text-zinc-400">
-          How it works
-        </h2>
-        <ol className="space-y-6">
-          <li className="flex gap-4">
-            <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-zinc-200 text-xs font-medium text-zinc-500">
-              1
-            </span>
-            <div className="space-y-1">
-              <p className="font-medium text-zinc-900">Completeness sheet</p>
-              <p className="text-sm leading-relaxed text-zinc-600">
+        {/* How it works */}
+        <section className="lp-section" id="how">
+          <h2 className="lp-section-title">How it works</h2>
+          <p className="lp-section-lead">
+            Three clear steps from rejected package to ready-to-submit zip.
+          </p>
+          <div className="lp-grid-3">
+            <article className="lp-card">
+              <span className="lp-step-num">1</span>
+              <h3>Completeness sheet</h3>
+              <p>
                 Every required doc for this cycle — status, what&apos;s missing,
                 what&apos;s on file.
               </p>
-            </div>
-          </li>
-          <li className="flex gap-4">
-            <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-zinc-200 text-xs font-medium text-zinc-500">
-              2
-            </span>
-            <div className="space-y-1">
-              <p className="font-medium text-zinc-900">Chase drafts</p>
-              <p className="text-sm leading-relaxed text-zinc-600">
+            </article>
+            <article className="lp-card">
+              <span className="lp-step-num">2</span>
+              <h3>Chase drafts</h3>
+              <p>
                 Ready-to-send emails for missing lower-tier waivers. You send;
                 we don&apos;t.
               </p>
-            </div>
-          </li>
-          <li className="flex gap-4">
-            <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-zinc-200 text-xs font-medium text-zinc-500">
-              3
-            </span>
-            <div className="space-y-1">
-              <p className="font-medium text-zinc-900">Zip for the GC</p>
-              <p className="text-sm leading-relaxed text-zinc-600">
+            </article>
+            <article className="lp-card">
+              <span className="lp-step-num">3</span>
+              <h3>Zip for the GC</h3>
+              <p>
                 Collected PDFs packed for the GC portal so this month&apos;s
                 package gets accepted.
               </p>
+            </article>
+          </div>
+        </section>
+
+        {/* What you get */}
+        <section className="lp-section" id="deliverables">
+          <h2 className="lp-section-title">What you get</h2>
+          <p className="lp-section-lead">
+            A concrete deliverable for the billing cycle that is stuck — not a
+            vague “platform.”
+          </p>
+          <div className="lp-grid-3">
+            <article className="lp-card">
+              <h3>Pay-App Completeness Sheet</h3>
+              <p>Status of every waiver and supporting doc the GC expects this period.</p>
+            </article>
+            <article className="lp-card">
+              <h3>Chase email drafts</h3>
+              <p>Copy ready for your vendors. Sent from your address, on your terms.</p>
+            </article>
+            <article className="lp-card">
+              <h3>Submission zip</h3>
+              <p>Collected PDFs organized for portal upload — you hit submit.</p>
+            </article>
+          </div>
+        </section>
+
+        {/* Pricing strip */}
+        <section className="lp-section" id="pricing">
+          <div className="lp-card" style={{ padding: "28px 24px" }}>
+            <h2 className="lp-section-title" style={{ marginBottom: 8 }}>
+              Pricing
+            </h2>
+            <p className="lp-section-lead" style={{ marginBottom: 18 }}>
+              Free trial — first Completeness Sheet free. Then $499/job or $299
+              checklist-only. Typical turnaround 24–48h.
+            </p>
+            <Link href="/trial" className="lp-btn lp-btn-primary">
+              Start free trial
+            </Link>
+          </div>
+        </section>
+
+        {/* CTA band — Bounce dark band with amber button */}
+        <section className="lp-cta-band" aria-label="Get started">
+          <h2>Stop losing another 30 days</h2>
+          <p>
+            Get your first Completeness Sheet free. Tell us the GC rules and
+            what&apos;s missing — we assemble the chase.
+          </p>
+          <div className="lp-hero-actions">
+            <Link href="/trial" className="lp-btn lp-btn-primary">
+              Free trial
+            </Link>
+            <Link href="/sheet" className="lp-btn lp-btn-on-dark">
+              Sample sheet
+            </Link>
+          </div>
+        </section>
+
+        <footer className="lp-footer">
+          <div>
+            <div className="lp-logo" style={{ marginBottom: 8 }}>
+              <span className="lp-logo-mark" aria-hidden />
+              LienPack
             </div>
-          </li>
-        </ol>
-      </section>
+            <p style={{ margin: 0, maxWidth: "36ch" }}>
+              Document chase only. Not legal advice. Not payment software.
+            </p>
+          </div>
+          <div className="lp-footer-links">
+            <Link href="/sheet">Sample sheet</Link>
+            <Link href="/trial">Free trial</Link>
+            <Link href="/start">Full intake</Link>
+            <Link href="/status">Status</Link>
+            <Link href="/non-goals">What we&apos;re not</Link>
+          </div>
+        </footer>
+      </div>
 
-      {/* Pricing */}
-      <section className="space-y-3 border-t border-zinc-100 pt-10">
-        <h2 className="text-xs font-medium uppercase tracking-[0.12em] text-zinc-400">
-          Pricing
-        </h2>
-        <p className="max-w-md text-base leading-relaxed text-zinc-800">
-          Free trial — first Completeness Sheet free. Then $499/job or $299
-          checklist-only. 24–48h turnaround.
-        </p>
-        <Link
-          href="/trial"
-          className="inline-flex min-h-11 items-center justify-center rounded-md bg-zinc-900 px-6 py-3 text-sm font-medium text-white hover:bg-zinc-800"
-        >
-          Free trial
-        </Link>
-      </section>
-
-      {/* Explicit non-claims */}
-      <section className="space-y-2 border-t border-zinc-100 pt-8">
-        <p className="max-w-md text-sm leading-relaxed text-zinc-500">
-          Document chase only. Not legal advice. Not payment software. Not
-          Textura, GCPay, or Procore.
-        </p>
-        <div className="flex flex-wrap gap-x-4 gap-y-2 pt-2 text-sm text-zinc-500">
-          <Link href="/sheet" className="underline underline-offset-2 hover:text-zinc-800">
-            Sample sheet
-          </Link>
-          <Link href="/trial" className="underline underline-offset-2 hover:text-zinc-800">
-            Free trial
-          </Link>
-          <Link href="/start" className="underline underline-offset-2 hover:text-zinc-800">
-            Full intake
-          </Link>
-          <Link href="/status" className="underline underline-offset-2 hover:text-zinc-800">
-            Status
-          </Link>
-          <Link href="/non-goals" className="underline underline-offset-2 hover:text-zinc-800">
-            What we&apos;re not
-          </Link>
-        </div>
-      </section>
-
-      {/* Sticky mobile Free trial */}
-      <div className="fixed inset-x-0 bottom-0 z-10 border-t border-zinc-200 bg-white/95 p-3 backdrop-blur sm:hidden">
-        <Link
-          href="/trial"
-          className="flex min-h-11 w-full items-center justify-center rounded-md bg-zinc-900 px-5 py-3 text-sm font-medium text-white"
-        >
+      <div className="lp-sticky-mobile">
+        <Link href="/trial" className="lp-btn lp-btn-primary">
           Free trial
         </Link>
       </div>
-      <div className="h-16 sm:hidden" aria-hidden />
-    </div>
+      <div className="lp-mobile-pad" aria-hidden />
+    </>
   );
 }

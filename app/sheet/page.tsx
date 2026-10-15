@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
 
 const ROWS = [
@@ -33,93 +34,161 @@ const ROWS = [
   },
 ];
 
-const STATUS_CLASS: Record<string, string> = {
-  Received: "bg-emerald-50 text-emerald-800 border-emerald-200",
-  Missing: "bg-rose-50 text-rose-800 border-rose-200",
-  Chasing: "bg-amber-50 text-amber-900 border-amber-200",
-  Expired: "bg-orange-50 text-orange-900 border-orange-200",
+const STATUS_STYLE: Record<string, CSSProperties> = {
+  Received: {
+    background: "#ecfdf5",
+    color: "#065f46",
+    border: "1px solid #a7f3d0",
+  },
+  Missing: {
+    background: "#fff1f2",
+    color: "#9f1239",
+    border: "1px solid #fecdd3",
+  },
+  Chasing: {
+    background: "var(--lp-amber-50)",
+    color: "var(--lp-amber-700)",
+    border: "1px solid var(--lp-amber-200)",
+  },
+  Expired: {
+    background: "#fff7ed",
+    color: "#9a3412",
+    border: "1px solid #fed7aa",
+  },
 };
 
 export default function SheetPage() {
   return (
-    <div className="space-y-6">
-      <Link href="/" className="text-sm text-zinc-500 underline-offset-2 hover:underline">
-        ← LienPack
-      </Link>
-      <header className="space-y-2">
-        <p className="text-xs font-medium uppercase tracking-wide text-zinc-500">
-          Sample deliverable
-        </p>
-        <h1 className="text-2xl font-semibold tracking-tight">Pay-App Completeness Sheet</h1>
-        <p className="text-sm text-zinc-600">
-          Example for a fictional Sep 2026 billing cycle. Your free trial sheet looks like this —
-          every required doc, status, and a chase draft for what is still missing.
-        </p>
-      </header>
+    <div className="lp-shell">
+      <div className="lp-page">
+        <Link href="/" className="lp-back">
+          ← LienPack
+        </Link>
+        <header style={{ marginBottom: 24 }}>
+          <p
+            style={{
+              margin: "0 0 8px",
+              fontSize: 12,
+              fontWeight: 600,
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: "var(--lp-amber-700)",
+            }}
+          >
+            Sample deliverable
+          </p>
+          <h1
+            style={{
+              margin: 0,
+              fontSize: "clamp(1.5rem, 3vw, 2rem)",
+              fontWeight: 600,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            Pay-App Completeness Sheet
+          </h1>
+          <p style={{ margin: "12px 0 0", color: "var(--lp-text-muted)", lineHeight: 1.55 }}>
+            Example for a fictional Sep 2026 billing cycle. Your free trial sheet
+            looks like this — every required doc, status, and a chase draft for
+            what is still missing.
+          </p>
+        </header>
 
-      <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-4 text-sm text-zinc-700">
-        <p>
-          <span className="font-medium text-zinc-900">Project:</span> Riverside Tower — Level 12 fit-out
-        </p>
-        <p>
-          <span className="font-medium text-zinc-900">GC:</span> Example General LLC
-        </p>
-        <p>
-          <span className="font-medium text-zinc-900">Period:</span> Sep 1–30, 2026
-        </p>
-        <p className="mt-2 text-zinc-500">Document chase only — not legal advice.</p>
-      </div>
+        <div className="lp-card" style={{ marginBottom: 16, background: "var(--lp-bg-sub)" }}>
+          <p style={{ margin: "0 0 4px", fontSize: 14 }}>
+            <strong>Project:</strong> Riverside Tower — Level 12 fit-out
+          </p>
+          <p style={{ margin: "0 0 4px", fontSize: 14 }}>
+            <strong>GC:</strong> Example General LLC
+          </p>
+          <p style={{ margin: 0, fontSize: 14 }}>
+            <strong>Period:</strong> Sep 1–30, 2026
+          </p>
+          <p style={{ margin: "12px 0 0", fontSize: 13, color: "var(--lp-slate-500)" }}>
+            Document chase only — not legal advice.
+          </p>
+        </div>
 
-      <div className="overflow-hidden rounded-lg border border-zinc-200">
-        <table className="w-full text-left text-sm">
-          <thead className="bg-zinc-50 text-zinc-500">
-            <tr>
-              <th className="px-3 py-2 font-medium">Document</th>
-              <th className="px-3 py-2 font-medium">Status</th>
-              <th className="hidden px-3 py-2 font-medium sm:table-cell">Note</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ROWS.map((r) => (
-              <tr key={r.doc} className="border-t border-zinc-200">
-                <td className="px-3 py-2.5 text-zinc-900">{r.doc}</td>
-                <td className="px-3 py-2.5">
-                  <span
-                    className={`inline-flex rounded-full border px-2 py-0.5 text-xs font-medium ${STATUS_CLASS[r.status]}`}
-                  >
-                    {r.status}
-                  </span>
-                </td>
-                <td className="hidden px-3 py-2.5 text-zinc-600 sm:table-cell">{r.note}</td>
+        <div
+          className="lp-card"
+          style={{ padding: 0, overflow: "hidden", marginBottom: 16 }}
+        >
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 14, textAlign: "left" }}>
+            <thead>
+              <tr style={{ background: "var(--lp-bg-sub)", color: "var(--lp-slate-500)" }}>
+                <th style={{ padding: "12px 16px", fontWeight: 500 }}>Document</th>
+                <th style={{ padding: "12px 16px", fontWeight: 500 }}>Status</th>
+                <th
+                  style={{ padding: "12px 16px", fontWeight: 500 }}
+                  className="hidden sm:table-cell"
+                >
+                  Note
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {ROWS.map((r) => (
+                <tr key={r.doc} style={{ borderTop: "1px solid var(--lp-border)" }}>
+                  <td style={{ padding: "12px 16px", color: "var(--lp-slate-900)" }}>{r.doc}</td>
+                  <td style={{ padding: "12px 16px" }}>
+                    <span
+                      style={{
+                        display: "inline-flex",
+                        borderRadius: 999,
+                        padding: "2px 10px",
+                        fontSize: 12,
+                        fontWeight: 600,
+                        ...STATUS_STYLE[r.status],
+                      }}
+                    >
+                      {r.status}
+                    </span>
+                  </td>
+                  <td
+                    style={{ padding: "12px 16px", color: "var(--lp-text-muted)" }}
+                    className="hidden sm:table-cell"
+                  >
+                    {r.note}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
-      <section className="space-y-2 rounded-lg border border-zinc-200 bg-white p-4">
-        <p className="text-sm font-medium text-zinc-900">Sample chase draft (you send)</p>
-        <pre className="whitespace-pre-wrap rounded-md bg-zinc-50 p-3 text-xs leading-relaxed text-zinc-700">
-{`Hi {{name}} —
+        <section className="lp-card" style={{ marginBottom: 24 }}>
+          <p style={{ margin: "0 0 10px", fontWeight: 600, fontSize: 14 }}>
+            Sample chase draft (you send)
+          </p>
+          <pre
+            style={{
+              margin: 0,
+              whiteSpace: "pre-wrap",
+              borderRadius: 12,
+              background: "var(--lp-bg-sub)",
+              padding: 14,
+              fontSize: 12,
+              lineHeight: 1.55,
+              color: "var(--lp-slate-700)",
+              fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+            }}
+          >{`Hi {{name}} —
 
 Quick ask for Riverside Tower (Sep pay app). We still need your conditional lien waiver for work through Sep 30 so the GC will accept this month's package.
 
 Please reply with the signed PDF (or say if something blocks it). Happy to use your preferred form.
 
 Thanks,
-{{your company}} via LienPack`}
-        </pre>
-        <p className="text-xs text-zinc-500">
-          We only draft using published contacts you provide. You send from your address.
-        </p>
-      </section>
+{{your company}} via LienPack`}</pre>
+          <p style={{ margin: "10px 0 0", fontSize: 12, color: "var(--lp-slate-500)" }}>
+            We only draft using published contacts you provide. You send from your address.
+          </p>
+        </section>
 
-      <a
-        href="/#trial"
-        className="inline-flex w-full items-center justify-center rounded-md bg-zinc-900 px-5 py-3 text-sm font-medium text-white hover:bg-zinc-800 sm:w-auto"
-      >
-        Free trial — get your first sheet
-      </a>
+        <Link href="/trial" className="lp-btn lp-btn-primary">
+          Free trial — get your first sheet
+        </Link>
+      </div>
     </div>
   );
 }

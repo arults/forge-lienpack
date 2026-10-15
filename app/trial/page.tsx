@@ -21,63 +21,82 @@ export default function Trial() {
   }
 
   return (
-    <div className="space-y-8 pb-8">
-      <Link href="/" className="text-sm text-zinc-500 underline-offset-2 hover:underline">
-        ← LienPack
-      </Link>
+    <div className="lp-shell">
+      <div className="lp-page">
+        <Link href="/" className="lp-back">
+          ← LienPack
+        </Link>
 
-      <header className="space-y-3">
-        <h1 className="text-2xl font-semibold tracking-tight text-zinc-900 sm:text-3xl">
-          Free trial
-        </h1>
-        <p className="max-w-md text-base leading-relaxed text-zinc-600">
-          First Completeness Sheet free. No card. Opens your email to
-          forge7408@agentmail.to with a short intake.
+        <header style={{ marginBottom: 28 }}>
+          <p
+            style={{
+              margin: "0 0 8px",
+              fontSize: 12,
+              fontWeight: 600,
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: "var(--lp-amber-700)",
+            }}
+          >
+            Free trial
+          </p>
+          <h1
+            style={{
+              margin: 0,
+              fontSize: "clamp(1.6rem, 3vw, 2.1rem)",
+              fontWeight: 600,
+              letterSpacing: "-0.02em",
+            }}
+          >
+            First Completeness Sheet free
+          </h1>
+          <p style={{ margin: "12px 0 0", color: "var(--lp-text-muted)", lineHeight: 1.55, maxWidth: "40ch" }}>
+            No card. Opens your email to forge7408@agentmail.to with a short intake.
+          </p>
+        </header>
+
+        <form onSubmit={onSubmit} className="lp-card" style={{ maxWidth: 440, display: "flex", flexDirection: "column", gap: 12 }}>
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="you@subcontractor.com"
+            className="lp-input"
+          />
+          <input
+            type="text"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+            placeholder="Company name"
+            className="lp-input"
+          />
+          <button type="submit" className="lp-btn lp-btn-primary" style={{ width: "100%" }}>
+            Free trial — email intake
+          </button>
+        </form>
+
+        {status === "ok" && (
+          <p style={{ marginTop: 14, fontSize: 14, color: "var(--lp-text-muted)" }}>
+            Opening your email app to forge7408@agentmail.to…
+          </p>
+        )}
+
+        <p style={{ marginTop: 24, fontSize: 14, color: "var(--lp-slate-500)" }}>
+          Need the long form?{" "}
+          <Link href="/start" style={{ textDecoration: "underline", textUnderlineOffset: 2 }}>
+            Start a job
+          </Link>
+          {" · "}
+          <Link href="/sheet" style={{ textDecoration: "underline", textUnderlineOffset: 2 }}>
+            Sample sheet
+          </Link>
         </p>
-      </header>
 
-      <form onSubmit={onSubmit} className="max-w-md space-y-3">
-        <input
-          type="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="you@subcontractor.com"
-          className="w-full rounded-md border border-zinc-300 px-3 py-2.5 text-sm outline-none focus:border-zinc-900"
-        />
-        <input
-          type="text"
-          value={company}
-          onChange={(e) => setCompany(e.target.value)}
-          placeholder="Company name"
-          className="w-full rounded-md border border-zinc-300 px-3 py-2.5 text-sm outline-none focus:border-zinc-900"
-        />
-        <button
-          type="submit"
-          className="w-full rounded-md bg-zinc-900 px-5 py-3 text-sm font-medium text-white hover:bg-zinc-800 sm:w-auto"
-        >
-          Free trial — email intake
-        </button>
-      </form>
-
-      {status === "ok" && (
-        <p className="text-sm text-zinc-600">Opening your email app to forge7408@agentmail.to…</p>
-      )}
-
-      <p className="text-sm text-zinc-500">
-        Need the long form?{" "}
-        <Link href="/start" className="underline underline-offset-2 hover:text-zinc-800">
-          Start a job
-        </Link>
-        {" · "}
-        <Link href="/sheet" className="underline underline-offset-2 hover:text-zinc-800">
-          Sample sheet
-        </Link>
-      </p>
-
-      <p className="max-w-md text-xs leading-relaxed text-zinc-400">
-        Document chase only. Not legal advice. Not payment software.
-      </p>
+        <p style={{ marginTop: 16, fontSize: 12, color: "var(--lp-slate-400)", maxWidth: "42ch", lineHeight: 1.5 }}>
+          Document chase only. Not legal advice. Not payment software.
+        </p>
+      </div>
     </div>
   );
 }
